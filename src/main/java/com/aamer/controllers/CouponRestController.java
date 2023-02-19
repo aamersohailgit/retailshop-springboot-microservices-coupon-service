@@ -1,5 +1,7 @@
 package com.aamer.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +33,18 @@ public class CouponRestController {
         Coupon coupon = repo.findByCode(code);
         return coupon != null ? new ResponseEntity<>(coupon, HttpStatus.OK) :
             new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    
+    @GetMapping("/")
+	public List<Coupon> getProducts(){
+		List<Coupon> coupons = null;
+		try {
+			coupons = repo.findAll();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return coupons;
+        
     }
 }
 
