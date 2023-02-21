@@ -22,7 +22,7 @@ public class CouponRestController {
     @Autowired
     private CouponRepo repo;
 
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<Coupon> createCoupon(@RequestBody Coupon coupon) {
         Coupon savedCoupon = repo.save(coupon);
         return new ResponseEntity<>(savedCoupon, HttpStatus.CREATED);
